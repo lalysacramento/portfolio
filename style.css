@@ -1,0 +1,450 @@
+/*------------------------------------*\
+  #ROOT VARIABLES & GLOBAL RESETS
+\*------------------------------------*/
+
+:root {
+  /* Paleta de Cores */
+  --bg-color: #F4F4F5;
+  --text-color: #1A1A1A;
+  --accent-color: #849669; /* Verde Oliva elegante */
+  --card-bg-color: #FFFFFF;
+  --border-color: #E4E4E7;
+
+  /* Tipografia */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  /* Espaçamento e Bordas */
+  --spacing-unit: 1rem;
+  --border-radius-container: 24px;
+  --border-radius-pill: 9999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  text-align: center;
+}
+
+section {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(0,0,0,0.03); /* Separação sutil */
+}
+
+.clique {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+/*------------------------------------*\
+  #ANIMATIONS
+\*------------------------------------*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/*------------------------------------*\
+  #HEADER & NAVIGATION
+\*------------------------------------*/
+header {
+  position: fixed;
+  top: var(--spacing-unit);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 600px;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Header escrolado (opcional, pode ser manipulado via JS) */
+header.scrolled nav {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: calc(var(--spacing-unit) * 2.5);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.hamburger {
+  display: none; /* Escondido em desktop */
+}
+
+
+/*------------------------------------*\
+  #HERO SECTION
+\*------------------------------------*/
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 0 var(--spacing-unit);
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: var(--spacing-unit);
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto calc(var(--spacing-unit) * 2.5);
+  color: #52525B;
+}
+
+/*------------------------------------*\
+  #CTA BUTTON
+\*------------------------------------*/
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  text-decoration: none;
+  padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 3);
+  border-radius: var(--border-radius-pill);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(132, 150, 105, 0.4);
+}
+
+/*------------------------------------*\
+  #ABOUT SECTION
+\*------------------------------------*/
+#sobre .sobre-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#sobre p {
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+  margin-bottom: var(--spacing-unit);
+}
+
+/*------------------------------------*\
+  #PORTFOLIO (BENTO GRID)
+\*------------------------------------*/
+.portfolio-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto calc(var(--spacing-unit) * 3);
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #52525B;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.portfolio-item {
+  background-color: #000; /* Fundo preto para vídeo */
+  border-radius: var(--border-radius-container);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 9 / 16; /* Formato Stories/Reels */
+  position: relative;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/*------------------------------------*\
+  #SERVICES & CONTACT
+\*------------------------------------*/
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: calc(var(--spacing-unit) * 1.5);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servico-item {
+  background-color: var(--card-bg-color);
+  padding: calc(var(--spacing-unit) * 2.5);
+  border-radius: var(--border-radius-container);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.servico-item:hover {
+    transform: translateY(-3px);
+}
+
+.servico-item h4 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-unit);
+  color: var(--accent-color);
+}
+
+#contato {
+  text-align: center;
+  background-color: #CFE1B9; /* Tom pastel para contraste suave */
+  color: #1A1A1A;
+  border-radius: var(--border-radius-container);
+  margin: 0 clamp(1rem, 5vw, 4rem) calc(var(--spacing-unit) * 4);
+}
+
+/*------------------------------------*\
+  #WHATSAPP FLOAT BUTTON
+\*------------------------------------*/
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25D366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 90;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+footer {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 2);
+  font-size: 0.9rem;
+  color: #71717A;
+}
+
+/*------------------------------------*\
+  #RESPONSIVE & MOBILE MENU (AVANÇADO)
+\*------------------------------------*/
+
+/* Ajuste fino para telas muito pequenas */
+@media (max-width: 380px) {
+    :root { --spacing-unit: 0.8rem; }
+    h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+  /* 1. Header e Navegação Mobile */
+  header {
+    width: 100%;
+    top: 0;
+    max-width: none;
+    padding: 10px;
+    transform: none;
+    left: 0;
+  }
+
+  nav {
+    justify-content: space-between;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* O Menu Gaveta (Lateral) */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%); /* Escondido na direita */
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 99;
+    padding-top: 60px;
+  }
+
+  .nav-links.nav-active {
+    transform: translateX(0%); /* Mostra o menu */
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  /* Animação dos links entrando */
+  .nav-links.nav-active a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 2. Hamburger Icon */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 101;
+    padding: 5px;
+  }
+
+  .hamburger .line {
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  /* Animação do X */
+  .hamburger.toggle .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-7px, 6px);
+  }
+  .hamburger.toggle .line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.toggle .line:nth-child(3) {
+    transform: rotate(45deg) translate(-7px, -6px);
+  }
+
+  /* 3. Layout Mobile */
+  .hero {
+    align-items: center;
+    padding-top: 100px;
+  }
+  
+  /* Garante vídeo grande no celular */
+  .portfolio-grid {
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+  }
+  
+  .portfolio-item {
+     border-radius: 20px; 
+  }
+
+  #contato {
+    margin: 2rem 1rem 4rem;
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
